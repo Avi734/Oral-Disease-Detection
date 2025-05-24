@@ -65,3 +65,37 @@ Target Accuracy: ~95% with F1-score close to 1
 ```bash
 git clone https://github.com/Avi734/Oral-Disease-Detection.git
 
+```
+2. **Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+3. **Run the application**
+```bash
+python app.py
+```
+4. ** Open your browser and go to:**
+http://localhost:5000
+
+---
+📊 **Evaluation**
+VGG16: ~96.22 accuracy
+
+Consistently high F1-score across all disease classes
+
+ROC, Confusion Matrix, and classification reports used for detailed evaluation
+
+----
+🔮 Future Scope
+1. Native mobile app integration
+
+2. Broader disease coverage (e.g., oral cancer)
+
+3. Multilingual support and voice-guided UI
+
+4. Cloud deployment for real-time scalability
+
+5. Real-time detection from video input
+
+6. Clinical integration for remote dental screening
+
