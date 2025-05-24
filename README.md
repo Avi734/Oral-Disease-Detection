@@ -74,7 +74,7 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-4. ** Open your browser and go to:**
+4. **Open your browser and go to:**
 http://localhost:5000
 
 ---
