@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral Disease Prediction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Oral Disease Prediction from Image</h1>
+        <input type="file" id="fileInput">
+        <button onclick="uploadImage()">Upload & Predict</button>
+
+        <div id="image-preview">
+            <img id="uploadedImage" src="" alt="Uploaded Image" style="display: none;">
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    
+</body>
+<script>function uploadImage() {
+    let fileInput = document.getElementById("fileInput").files[0];
+    if (!fileInput) {
+        alert("Please select an image first!");
+        return;
+    }
+
+    let formData = new FormData();
+    formData.append("file", fileInput);
+
+    fetch("/predict", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        // Show the uploaded image
+        let uploadedImage = document.getElementById("uploadedImage");
+        uploadedImage.src = data.image_url;
+        uploadedImage.style.display = "block";
+
+        // Display the prediction result
+        document.getElementById("result").innerHTML = 
+            `Predicted Disease: <b>${data.disease}</b><br>Confidence: <b>${data.confidence}%</b>`;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById("result").innerHTML = "Prediction failed.";
+    });
+}
+</script>
+</html>
